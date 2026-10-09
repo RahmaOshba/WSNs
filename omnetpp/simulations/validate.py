@@ -66,8 +66,36 @@ for path in sorted(glob.glob(os.path.join(here, 'results', '*.sca'))):
     bad += not same
     rows.append((k, sc, r, 'OK' if same else 'DIFFERENT'))
 
-print('%-45s %15s %15s %15s %10s  %s' % ('run', 'FND omnet/ns3', 'HND', 'LND', 'PDR', ''))
+GROUPS = [('1_ORIGINAL', 'ORIGINAL: each protocol in its own paper settings'),
+          ('2_EDITED', 'EDITED: unified environment (fair comparison)'),
+          ('3_IMPROVED', 'IMPROVED: the hybrids after our fix'),
+          ('4_PROPOSED', 'PROPOSED: v1 -> v8-Chain'),
+          ('4_PROPOSED/side_experiments', 'PROPOSED: side experiment'),
+          ('far_bs', 'FAR BS: BS at (50,-100)'),
+          ('ablation', 'ABLATION: v8 without one improvement'),
+          ('routing', 'ROUTING: v8-Chain routing modes'),
+          ('robustness', 'ROBUSTNESS: 8 topologies')]
+order = {g: i for i, (g, _) in enumerate(GROUPS)}
+# inside a group: the order of the configurations in omnetpp.ini (LEACH, HEED, PEGASIS, hybrids; v1 -> v8)
+ini_order = re.findall(r'^\[Config (\w+)\]', open(os.path.join(here, 'omnetpp.ini')).read(), re.M)
+def rank(name):
+    base = name if name in ini_order else re.sub(r'_(farBS|seed\d+)$', '', name)
+    base = {'v5b_center': 'v5b_energy_aware_repair'}.get(base, base)
+    return (ini_order.index(base) if base in ini_order else len(ini_order),
+            int(re.search(r'seed(\d+)$', name).group(1)) if 'seed' in name else 0, name)
+rows.sort(key=lambda x: (order.get(x[2]['group'], 99) if x[2] else 99, rank(x[0])))
+
+head = '%-45s %15s %15s %15s %10s  %s' % ('run', 'FND omnet/ns3', 'HND', 'LND', 'PDR', '')
+width = len(head) + 4
+current = None
 for k, sc, r, status in rows:
+    group = r['group'] if r else 'no reference'
+    if group != current:
+        current = group
+        title = dict(GROUPS).get(group, group)
+        print()
+        print((' %s ' % title).center(width, '-'))
+        print(head)
     f = lambda m: '%d/%s' % (sc[m], r[m] if r else '-')
     print('%-45s %15s %15s %15s %10.6f  %s' % (k, f('FND'), f('HND'), f('LND'), sc['PDR'], status))
 print('\n%d runs identical to ns-3, %d different, %d without reference' % (ok, bad, missing))
