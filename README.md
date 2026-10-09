@@ -14,7 +14,7 @@ Wireless Sensor Networks Using Hybrid Cryptography*.
 | `results/` | The output of every code, in the same folders (see `results/README.md`) |
 | `papers/` | The research papers, split into `1_ORIGINAL`, `2_HYBRID`, `3_RECENT` (see `papers/README.md`) |
 | `figures/` | Screenshots and diagrams |
-| `docs/` | Plans after the defense: `SECURITY_PLAN.md` (ECC + AES with minimum lifetime loss) |
+| `docs/` | Plans after the defense: `SECURITY_PLAN.md` (ECC + AES with minimum lifetime loss), `AI_CLUSTERING_PAPERS.md` (AI papers for CH selection and how they can improve v8) |
 | `thesis-final/` | Defense deck, State-of-the-Art report, Literature Review (one Excel sheet), Results Comparison workbook and Simulation Parameters Guide — all built from `results/` (see `thesis-final/build/README.md`) |
 
 Headline result (unified environment, BS at the centre): **v8 FND 2446 /
