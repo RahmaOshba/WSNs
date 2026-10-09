@@ -111,8 +111,6 @@ void DemoSink::finish()
             << "Readings at the sink  = " << delivered << "\n"
             << "PDR (readings)        = " << (generated ? 100.0 * delivered / generated : 0.0) << " %\n"
             << "Packets to the sink   = " << packetsAtSink << "  (instead of " << generated << " without clustering)\n";
-    cancelAndDelete(roundTimer);
-    roundTimer = nullptr;
 }
 
 } // namespace wsn

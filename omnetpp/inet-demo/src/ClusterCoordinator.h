@@ -15,6 +15,7 @@ class ClusterApp;
 class ClusterCoordinator : public omnetpp::cSimpleModule
 {
   public:
+    ~ClusterCoordinator() override { cancelAndDelete(roundTimer); }
     void readingGenerated() { ++generated; }
     void readingsDelivered(int n) { delivered += n; ++packetsAtSink; deliveredVec.record(delivered); }
     int clusterOf(int sensor) const { return sensor / sensorsPerCluster; }

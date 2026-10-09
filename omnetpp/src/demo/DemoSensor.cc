@@ -168,10 +168,13 @@ void DemoSensor::finish()
     recordScalar("energyUsed", initial - residual, "J");
     EV_INFO << "Sensor " << getIndex() << " (cluster " << clusterId << "): sent " << sent << ", received "
             << received << ", energy left " << residual << " J\n";
+}
+
+DemoSensor::~DemoSensor()
+{
     cancelAndDelete(sendTimer);
     cancelAndDelete(fuseTimer);
     cancelAndDelete(advTimer);
-    sendTimer = fuseTimer = advTimer = nullptr;
 }
 
 } // namespace wsn

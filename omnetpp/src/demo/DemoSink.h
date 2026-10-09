@@ -11,6 +11,7 @@ class DemoSensor;
 class DemoSink : public omnetpp::cSimpleModule
 {
   public:
+    ~DemoSink() override { cancelAndDelete(roundTimer); }
     double x() const { return px; }
     double y() const { return py; }
     void readingGenerated() { ++generated; }

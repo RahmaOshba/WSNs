@@ -127,10 +127,15 @@ void Controller::createNodes(const std::vector<NodeView>& nodes)
     const double margin = 10.0;
     offsetX = margin - minX;
     offsetY = margin - minY;
+    // keep the whole field (also with the far BS) within about 600 px of height
+    scale = std::min(scale, 600.0 / (maxY - minY + 2 * margin));
 
     cModule* network = getParentModule();
-    network->getDisplayString().setTagArg("bgb", 0, (maxX - minX + 2 * margin) * scale);
+    const double fieldW = (maxX - minX + 2 * margin) * scale;
+    network->getDisplayString().setTagArg("bgb", 0, fieldW + 160);   // extra column on the right for the controller
     network->getDisplayString().setTagArg("bgb", 1, (maxY - minY + 2 * margin) * scale);
+    getDisplayString().setTagArg("p", 0, fieldW + 80);
+    getDisplayString().setTagArg("p", 1, 50);
 
     bsModule = network->getSubmodule("bs");
     if (bsModule) {

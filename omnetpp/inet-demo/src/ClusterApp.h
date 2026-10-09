@@ -14,6 +14,7 @@ class ClusterCoordinator;
 class ClusterApp : public inet::ApplicationBase, public inet::UdpSocket::ICallback
 {
   public:
+    ~ClusterApp() override;
     // the coordinator tells every sensor its role for this round
     void startRound(int round, bool isCH, int chIndex, omnetpp::simtime_t sendAt, omnetpp::simtime_t fuseAt);
     double residualEnergy() const;

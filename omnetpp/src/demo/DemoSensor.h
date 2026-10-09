@@ -20,6 +20,7 @@ class DemoSink;
 class DemoSensor : public omnetpp::cSimpleModule
 {
   public:
+    ~DemoSensor() override;
     double x() const { return px; }
     double y() const { return py; }
     int cluster() const { return clusterId; }

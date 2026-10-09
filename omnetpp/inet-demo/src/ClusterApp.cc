@@ -164,11 +164,14 @@ void ClusterApp::finish()
         EV_INFO << "Sensor " << index << " (cluster " << cluster << "): sent " << sent << ", received " << received
                 << ", energy left " << residualEnergy() << " J\n";
     }
+    ApplicationBase::finish();
+}
+
+ClusterApp::~ClusterApp()
+{
     cancelAndDelete(advTimer);
     cancelAndDelete(sendTimer);
     cancelAndDelete(fuseTimer);
-    advTimer = sendTimer = fuseTimer = nullptr;
-    ApplicationBase::finish();
 }
 
 } // namespace inetdemo
