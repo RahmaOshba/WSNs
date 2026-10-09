@@ -9,9 +9,11 @@ The full thesis work, from the first baselines to the proposed protocol, ported 
 | `2_EDITED` | the same protocols (plus HEED with the fairness penalty) in the unified environment |
 | `3_IMPROVED` | SH-LEACH, H-LEACH, EECH-HEED after our fix |
 | `4_PROPOSED` | v1 → v8 and v8-Chain, plus the side experiment |
-| extra | far BS, v8 ablation (I1–I5), v8-Chain routing modes, robustness over 8 topologies, the 17 security scenarios × 6 |
+| extra | far BS, v8 ablation (I1–I5), v8-Chain routing modes, robustness over 8 topologies |
 
-**Validation:** all **200 runs give exactly the ns-3 FND / HND / LND** (and the same PDR) as in
+The security experiments (ECC + AES) are left out of the OMNeT++ version for now; they will be added back as a separate step (plan: `docs/SECURITY_PLAN.md`).
+
+**Validation:** all **98 runs give exactly the ns-3 FND / HND / LND** (and the same PDR) as in
 `results/summary_all.csv`. The full table is in [`VALIDATION.md`](VALIDATION.md).
 
 ## How it works
@@ -75,7 +77,7 @@ cd simulations
 ./run -u Cmdenv -c v8_chain_center       # command line, prints FND/HND/LND at the end
 ./run_all.sh                             # every configuration (≈ 1 min on 8 cores)
 python3 validate.py                      # compare everything with the ns-3 results
-python3 summarize.py SecurityPlan        # mean FND/HND/LND/PDR of one config (seeds averaged)
+python3 summarize.py Robustness          # mean FND/HND/LND/PDR of one config (seeds averaged)
 ```
 
 In the GUI:
@@ -94,15 +96,13 @@ In the GUI:
 | `Ablation` | v8 without I1 … I5 |
 | `Routing` | v8-Chain `CHAIN_MODE` 0 / 1 / 2, centre and far BS |
 | `Robustness` | v5b, v8, v8-Chain × 8 topology seeds |
-| `Security_LEACH_center` … `Security_v8_far` | the 17 security scenarios (see the comments in the ini) |
-| `SecurityPlan`, `SecurityPlanSweep` | the lifetime-saving ECC + AES options of `docs/SECURITY_PLAN.md` |
 
 `**.controller.defines` takes the same switches as the ns-3 `-D` flags (`code/README.md`), for example:
 
 ```ini
 [Config MyTest]
 **.controller.protocol = "v8_chain_center"
-**.controller.defines  = "BS_Y=-100 I4=0 SEC_BITS=104 SEC_NJ_PER_BIT=5"
+**.controller.defines  = "BS_Y=-100 I4=0"
 ```
 
 A wrong switch name stops the run with the list of switches that protocol has.

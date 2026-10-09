@@ -1,7 +1,8 @@
 # Validation: OMNeT++ port vs. ns-3
 
-Every configuration of `simulations/omnetpp.ini` was run in OMNeT++ 6.4 (Cmdenv) and compared with the ns-3 results of the thesis (`results/summary_all.csv`) by `simulations/validate.py`.
+Every protocol configuration of `simulations/omnetpp.ini` was run in OMNeT++ 6.4 (Cmdenv) and compared with the ns-3 results of the thesis (`results/summary_all.csv`) by `simulations/validate.py`.
 FND, HND and LND are identical in every run; PDR is equal to the precision stored in the summary.
+(The security scenarios are not part of the OMNeT++ version for now.)
 
 ```
 run                                             FND omnet/ns3             HND             LND        PDR  
@@ -68,108 +69,6 @@ center_mode2                                        2446/2446       2536/2536   
 farBS_mode0                                         1406/1406       1551/1551       1606/1606   0.993787  OK
 farBS_mode1                                         1586/1586       1801/1801       1866/1866   0.995802  OK
 farBS_mode2                                         1626/1626       1821/1821       1881/1881   0.995637  OK
-sec_leach_center_s0_none                            1383/1383       1586/1586       1842/1842   0.993952  OK
-sec_leach_center_s1_aes_only                        1037/1037       1240/1240       1435/1435   0.991308  OK
-sec_leach_center_s10_ecc160_aes                       971/971       1141/1141       1300/1300   0.993089  OK
-sec_leach_center_s11_p256_aes                         845/845         986/986       1118/1118   0.988681  OK
-sec_leach_center_s12_ecc160_ecdsa                     281/281         306/306         320/320   0.988723  OK
-sec_leach_center_s13_ecc160_swaes                     557/557         666/666         779/779   0.986976  OK
-sec_leach_center_s14_x25519_aes                       932/932       1080/1080       1250/1250   0.989585  OK
-sec_leach_center_s15_rsa3072_aes                      728/728         870/870       1029/1029   0.987947  OK
-sec_leach_center_s16_rsa1024_aes                      990/990       1158/1158       1321/1321   0.994345  OK
-sec_leach_center_s2_hybrid_rsa                        395/395         429/429         450/450   0.990823  OK
-sec_leach_center_s3_hybrid_ecc                        302/302         328/328         347/347   0.980620  OK
-sec_leach_center_s4_full_ecc                              1/1           23/23           39/39   0.238238  OK
-sec_leach_center_s5_full_rsa                          182/182         194/194         201/201   0.054656  OK
-sec_leach_center_s6_once_rsa                        1019/1019       1210/1210       1410/1410   0.992027  OK
-sec_leach_center_s7_once_ecc                        1017/1017       1194/1194       1365/1365   0.991167  OK
-sec_leach_center_s8_bs_ecc                            284/284         314/314         321/321   0.969777  OK
-sec_leach_center_s9_bs_rsa                            201/201         209/209         220/220   0.953152  OK
-sec_leach_far_s0_none                                 988/988       1230/1230       1652/1652   0.994295  OK
-sec_leach_far_s1_aes_only                             821/821         986/986       1334/1334   0.988411  OK
-sec_leach_far_s10_ecc160_aes                          764/764         913/913       1207/1207   0.991688  OK
-sec_leach_far_s11_p256_aes                            648/648         771/771       1046/1046   0.989375  OK
-sec_leach_far_s12_ecc160_ecdsa                        262/262         285/285         311/311   0.992586  OK
-sec_leach_far_s13_ecc160_swaes                        504/504         566/566         752/752   0.984140  OK
-sec_leach_far_s14_x25519_aes                          720/720         867/867       1158/1158   0.990047  OK
-sec_leach_far_s15_rsa3072_aes                         572/572         675/675         913/913   0.990077  OK
-sec_leach_far_s16_rsa1024_aes                         765/765         920/920       1252/1252   0.989571  OK
-sec_leach_far_s2_hybrid_rsa                           351/351         390/390         434/434   0.988382  OK
-sec_leach_far_s3_hybrid_ecc                           281/281         304/304         336/336   0.988288  OK
-sec_leach_far_s4_full_ecc                                 1/1           20/20           47/47   0.218526  OK
-sec_leach_far_s5_full_rsa                             161/161         186/186         200/200   0.052780  OK
-sec_leach_far_s6_once_rsa                             798/798         954/954       1283/1283   0.991027  OK
-sec_leach_far_s7_once_ecc                             786/786         930/930       1266/1266   0.991552  OK
-sec_leach_far_s8_bs_ecc                               264/264         295/295         320/320   0.958414  OK
-sec_leach_far_s9_bs_rsa                               181/181         203/203         220/220   0.941501  OK
-sec_pegasis_center_s0_none                          1324/1324       2352/2352       3504/3504   0.994186  OK
-sec_pegasis_center_s1_aes_only                      1196/1196       2043/2043       3077/3077   0.994152  OK
-sec_pegasis_center_s10_ecc160_aes                   1141/1141       1953/1953       2938/2938   0.993235  OK
-sec_pegasis_center_s11_p256_aes                       981/981       1676/1676       2514/2514   0.992035  OK
-sec_pegasis_center_s12_ecc160_ecdsa                   760/760       1016/1016       1665/1665   0.980071  OK
-sec_pegasis_center_s13_ecc160_swaes                   785/785       1099/1099       1682/1682   0.991904  OK
-sec_pegasis_center_s14_x25519_aes                   1081/1081       1847/1847       2776/2776   0.993661  OK
-sec_pegasis_center_s15_rsa3072_aes                    863/863       1475/1475       2226/2226   0.992637  OK
-sec_pegasis_center_s16_rsa1024_aes                  1158/1158       1980/1980       2982/2982   0.993499  OK
-sec_pegasis_center_s2_hybrid_rsa                      874/874       1245/1245       2008/2008   0.977157  OK
-sec_pegasis_center_s3_hybrid_ecc                      774/774       1047/1047       1705/1705   0.976840  OK
-sec_pegasis_center_s4_full_ecc                          11/11           12/12           23/23   0.832922  OK
-sec_pegasis_center_s5_full_rsa                            1/1             1/1           14/14   0.028846  OK
-sec_pegasis_center_s6_once_rsa                      1158/1158       1980/1980       2982/2982   0.993499  OK
-sec_pegasis_center_s7_once_ecc                      1141/1141       1953/1953       2938/2938   0.993235  OK
-sec_pegasis_center_s8_bs_ecc                          774/774       1047/1047       1700/1700   0.976839  OK
-sec_pegasis_center_s9_bs_rsa                          674/674         848/848       1229/1229   0.944578  OK
-sec_pegasis_far_s0_none                             1374/1374       2176/2176       2713/2713   0.990811  OK
-sec_pegasis_far_s1_aes_only                         1237/1237       1900/1900       2384/2384   0.991088  OK
-sec_pegasis_far_s10_ecc160_aes                      1182/1182       1814/1814       2272/2272   0.991101  OK
-sec_pegasis_far_s11_p256_aes                        1014/1014       1560/1560       1952/1952   0.988441  OK
-sec_pegasis_far_s12_ecc160_ecdsa                      774/774         974/974       1016/1016   0.964890  OK
-sec_pegasis_far_s13_ecc160_swaes                      804/804       1057/1057       1397/1397   0.985842  OK
-sec_pegasis_far_s14_x25519_aes                      1118/1118       1716/1716       2149/2149   0.988652  OK
-sec_pegasis_far_s15_rsa3072_aes                       893/893       1374/1374       1721/1721   0.988643  OK
-sec_pegasis_far_s16_rsa1024_aes                     1199/1199       1843/1843       2302/2302   0.989653  OK
-sec_pegasis_far_s2_hybrid_rsa                         894/894       1195/1195       1259/1259   0.973544  OK
-sec_pegasis_far_s3_hybrid_ecc                         796/796       1021/1021       1076/1076   0.968066  OK
-sec_pegasis_far_s4_full_ecc                             11/11           12/12           22/22   0.831414  OK
-sec_pegasis_far_s5_full_rsa                               1/1             1/1           13/13   0.033816  OK
-sec_pegasis_far_s6_once_rsa                         1199/1199       1843/1843       2302/2302   0.989653  OK
-sec_pegasis_far_s7_once_ecc                         1182/1182       1814/1814       2272/2272   0.991101  OK
-sec_pegasis_far_s8_bs_ecc                             796/796       1021/1021       1075/1075   0.968103  OK
-sec_pegasis_far_s9_bs_rsa                             674/674         806/806         855/855   0.959392  OK
-sec_v8_center_s0_none                               2446/2446       2536/2536       2566/2566   0.997168  OK
-sec_v8_center_s1_aes_only                           2061/2061       2141/2141       2176/2176   0.997941  OK
-sec_v8_center_s10_ecc160_aes                        1931/1931       2016/2016       2046/2046   0.997508  OK
-sec_v8_center_s11_p256_aes                          1651/1651       1741/1741       1771/1771   0.997368  OK
-sec_v8_center_s12_ecc160_ecdsa                        991/991       1096/1096       1136/1136   0.993745  OK
-sec_v8_center_s13_ecc160_swaes                      1061/1061       1181/1181       1211/1211   0.996028  OK
-sec_v8_center_s14_x25519_aes                        1831/1831       1916/1916       1941/1941   0.997074  OK
-sec_v8_center_s15_rsa3072_aes                       1481/1481       1551/1551       1591/1591   0.997069  OK
-sec_v8_center_s16_rsa1024_aes                       1961/1961       2046/2046       2081/2081   0.997612  OK
-sec_v8_center_s2_hybrid_rsa                         1286/1286       1351/1351       1391/1391   0.990603  OK
-sec_v8_center_s3_hybrid_ecc                         1101/1101       1191/1191       1241/1241   0.990322  OK
-sec_v8_center_s4_full_ecc                                 2/2           96/96         201/201   0.168661  OK
-sec_v8_center_s5_full_rsa                               44/44         216/216         331/331   0.059096  OK
-sec_v8_center_s6_once_rsa                           2016/2016       2086/2086       2116/2116   0.997464  OK
-sec_v8_center_s7_once_ecc                           1966/1966       2050/2050       2076/2076   0.996978  OK
-sec_v8_center_s8_bs_ecc                               706/706         936/936       1026/1026   0.966598  OK
-sec_v8_center_s9_bs_rsa                               411/411         746/746         851/851   0.953464  OK
-sec_v8chain_far_s0_none                             1626/1626       1821/1821       1881/1881   0.995637  OK
-sec_v8chain_far_s1_aes_only                         1361/1361       1566/1566       1616/1616   0.993940  OK
-sec_v8chain_far_s10_ecc160_aes                      1281/1281       1481/1481       1536/1536   0.994373  OK
-sec_v8chain_far_s11_p256_aes                        1051/1051       1276/1276       1316/1316   0.994632  OK
-sec_v8chain_far_s12_ecc160_ecdsa                      796/796         911/911         986/986   0.971961  OK
-sec_v8chain_far_s13_ecc160_swaes                      661/661         901/901         936/936   0.993157  OK
-sec_v8chain_far_s14_x25519_aes                      1226/1226       1386/1386       1436/1436   0.995845  OK
-sec_v8chain_far_s15_rsa3072_aes                       911/911       1111/1111       1171/1171   0.993541  OK
-sec_v8chain_far_s16_rsa1024_aes                     1336/1336       1491/1491       1551/1551   0.995157  OK
-sec_v8chain_far_s2_hybrid_rsa                         946/946       1100/1100       1186/1186   0.980186  OK
-sec_v8chain_far_s3_hybrid_ecc                         841/841         981/981       1061/1061   0.960612  OK
-sec_v8chain_far_s4_full_ecc                               1/1           71/71         181/181   0.149145  OK
-sec_v8chain_far_s5_full_rsa                           199/199         281/281         386/386   0.040478  OK
-sec_v8chain_far_s6_once_rsa                         1316/1316       1521/1521       1561/1561   0.995503  OK
-sec_v8chain_far_s7_once_ecc                         1286/1286       1496/1496       1551/1551   0.995730  OK
-sec_v8chain_far_s8_bs_ecc                             661/661         921/921         996/996   0.960589  OK
-sec_v8chain_far_s9_bs_rsa                             346/346         746/746         846/846   0.948800  OK
 eechheed_EDITED                                     1277/1277       1384/1384       1543/1543   0.994936  OK
 eechheed_IMPROVED                                   1335/1335       1384/1384       1766/1766   0.996207  OK
 eechheed_ORIGINAL                                   1121/1121       1954/1954       3783/3783   0.997831  OK
@@ -206,5 +105,5 @@ v8_chain_center                                     2446/2446       2536/2536   
 v8_chain_farBS                                      1626/1626       1821/1821       1881/1881   0.995637  OK
 v8_farBS                                            1406/1406       1551/1551       1606/1606   0.993787  OK
 
-200 runs identical to ns-3, 0 different, 0 without reference
+98 runs identical to ns-3, 0 different, 0 without reference
 ```
