@@ -1,0 +1,4 @@
+#!/bin/sh
+# Run the simulation from this folder, e.g.  ./run -c v8_chain_center   (add -u Qtenv for the GUI)
+cd "$(dirname "$0")" || exit 1
+exec ../src/wsn -n ../src:. "$@"

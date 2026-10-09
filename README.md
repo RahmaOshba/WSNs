@@ -1,6 +1,6 @@
 # energy-efficient-wsn-clustering
 
-Energy-efficient clustering for Wireless Sensor Networks in ns-3.41: LEACH, HEED,
+Energy-efficient clustering for Wireless Sensor Networks in ns-3.41 and OMNeT++ 6.4: LEACH, HEED,
 PEGASIS and three LEACH + HEED hybrids (SH-LEACH, H-LEACH, EECH-HEED) reproduced
 and compared in one fair environment, and the proposed protocol **v8 / v8-Chain**.
 
@@ -10,6 +10,7 @@ Wireless Sensor Networks Using Hybrid Cryptography*.
 | Folder | Content |
 |---|---|
 | `code/` | All simulation codes, split into `1_ORIGINAL`, `2_EDITED`, `3_IMPROVED`, `4_PROPOSED` (see `code/README.md`) |
+| `omnetpp/` | The same work in **OMNeT++ 6.4**: every protocol and experiment, validated run-by-run against ns-3 (see `omnetpp/README.md`) |
 | `results/` | The output of every code, in the same folders (see `results/README.md`) |
 | `papers/` | The research papers, split into `1_ORIGINAL`, `2_HYBRID`, `3_RECENT` (see `papers/README.md`) |
 | `figures/` | Screenshots and diagrams |

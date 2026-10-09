@@ -1,0 +1,6 @@
+src/Makefile
+src/out/
+src/wsn
+src/wsn.exe
+simulations/results/
+*.anf.bak
