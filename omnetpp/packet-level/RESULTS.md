@@ -76,9 +76,17 @@ The LEACH paper gives each cluster its own CDMA code, so all clusters can use th
 | Slots | LEACH centre FND / PDR | v8 centre FND / PDR | v8-Chain centre FND / PDR |
 |---|---|---|---|
 | global (default) | 897 / 99.5 % | 1711 / 99.8 % | 1711 / 99.8 % |
-| parallel per cluster | running | running | running |
+| parallel per cluster | 912 / **36.2 %** | 1676 / **61.8 %** | 1672 / **59.9 %** |
 
-The results of this configuration will be added when the runs finish.
+| Slots | Collided frames (LEACH / v8) | MAC channel-access failures (LEACH / v8) |
+|---|---|---|
+| global | 86 492 / 35 282 | 28 / 15 |
+| parallel per cluster | 4 336 163 / 4 060 731 | 143 426 / 128 906 |
+
+- The lifetime hardly changes. A frame dropped by the MAC is never transmitted, so it costs almost nothing.
+- **The delivery collapses.** Members of neighbouring clusters transmit at the same time and their frames collide. A reading needs all 3 of its fragments to arrive, so the loss is amplified.
+- v8 still delivers much more than LEACH (62% vs 36%). It has fewer CHs and more members send directly to the BS, so less traffic competes in the clusters.
+- **Conclusion:** on one 802.15.4 channel the TDMA slots must be global (or the clusters must use different channels). The parallel-slot assumption of the LEACH paper does not hold here. The global slots (default) are what make the 99.5% PDR in section 1 possible.
 
 ## 4. Limits of this step
 
