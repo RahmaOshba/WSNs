@@ -129,6 +129,14 @@ opp_scavetool export -f 'name =~ alive' -o alive.csv results/v8_chain_center-*.v
 To get the same CSV files the ns-3 programs wrote (`*-results.csv`, `*-node-energy.csv`,
 `*-node-lifetime.csv`), uncomment `**.controller.csvDir` in the ini.
 
+## Packet level: the protocols over real IEEE 802.15.4 (`packet-level/`)
+
+LEACH and v8 / v8-Chain with every message as a real 802.15.4 frame over INET:
+- CSMA/CA with ACKs and retransmissions, collisions, and IPv4 fragmentation of the 2000-bit readings;
+- energy charged for every frame the MAC really sends or receives.
+
+This removes the thesis limitation "analytical radio model". See [`packet-level/README.md`](packet-level/README.md).
+
 ## Demos with visible packets (`0_FIRST_EXPERIMENTS`)
 
 The clustered demo of `code/0_FIRST_EXPERIMENTS/demo_clustered_wsn.cc` exists in two versions:

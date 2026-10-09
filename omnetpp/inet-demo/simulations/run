@@ -3,4 +3,4 @@
 # Needs:  source <omnetpp>/setenv   and   source <inet>/setenv   (sets INET_ROOT)
 cd "$(dirname "$0")" || exit 1
 : "${INET_ROOT:?INET_ROOT is not set - run: source ~/inet4.6/setenv}"
-exec opp_run -l ../src/inetdemo -l "$INET_ROOT/src/INET" -n "../src:.:$INET_ROOT/src" --image-path="$INET_ROOT/images" "$@"
+exec opp_run -l ../src/inetdemo -l "$INET_ROOT/src/INET" -n "../src:.:$INET_ROOT/src" --image-path="$INET_ROOT/images;$(dirname "$(command -v opp_run)")/../images" "$@"
