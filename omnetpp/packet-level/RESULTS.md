@@ -54,11 +54,18 @@ The JOINs of one set-up phase are sent with CSMA/CA inside a JOIN window.
 | JOIN window | LEACH centre | v8 centre | v8-Chain centre | LEACH far | v8 far | v8-Chain far |
 |---|---|---|---|---|---|---|
 | 1.5 s (default) | 897 | 1711 | 1711 | 599 | 916 | 1061 |
-| 0.4 s (first run, being re-run with the final code) | 922 | 1741 | 1741 | 419 | 391 | 461 |
+| 0.4 s | 922 | 1721 | 1742 | **407** (−32%) | **506** (−45%) | **506** (−52%) |
 
-- With a 0.4 s window, about 11% of the JOINs collide.
-- At the centre this costs little, because the BS is close.
-- With the far BS, the direct transmissions are long and expensive (multipath, d⁴), so the lifetime collapses.
+JOIN frames the MAC gave up on (retry limit + channel access failure), whole run:
+
+| JOIN window | LEACH centre | v8 centre | LEACH far | v8 far | v8-Chain far |
+|---|---|---|---|---|---|
+| 1.5 s | 32 | 23 | 16 | 10 | 8 |
+| 0.4 s | 7956 | 4082 | 3873 | 1506 | 1620 |
+
+- With a 0.4 s window, many JOINs collide.
+- At the centre this costs nothing (FND even slightly higher), because a member sending directly to a close BS pays little.
+- With the far BS, the direct transmissions are long and expensive (multipath, d⁴), so the lifetime collapses. v8 loses most of its advantage, but is still ahead of LEACH (+24%).
 
 This effect cannot be seen in the analytical model. It points to a possible v8 improvement (I6): a member whose JOIN was lost sends to the nearest CH it heard instead of the BS.
 
