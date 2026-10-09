@@ -129,6 +129,54 @@ opp_scavetool export -f 'name =~ alive' -o alive.csv results/v8_chain_center-*.v
 To get the same CSV files the ns-3 programs wrote (`*-results.csv`, `*-node-energy.csv`,
 `*-node-lifetime.csv`), uncomment `**.controller.csvDir` in the ini.
 
+## Demos with visible packets (`0_FIRST_EXPERIMENTS`)
+
+The clustered demo of `code/0_FIRST_EXPERIMENTS/demo_clustered_wsn.cc` exists in two versions:
+
+- 12 sensors in 3 clusters and a sink on top.
+- 6 rounds of 10 s.
+- In each cluster, the node with the most energy that has not yet been CH in this epoch becomes CH.
+- Each member sends a 40-byte reading in its own TDMA slot.
+- The CH fuses the readings and sends one packet to the sink.
+- Result: 72 readings in 18 packets.
+
+| | Pure OMNeT++ (`src/demo/`) | INET (`inet-demo/`) |
+|---|---|---|
+| Radio / MAC | Ideal channel, TDMA, 250 kb/s; frames sent with `sendDirect` (distance delay + bit-rate duration) | IEEE 802.15.4 of INET: CSMA/CA MAC with ACKs, 250 kb/s, scalar radio channel, UDP/IPv4 |
+| Energy | First-order radio model of the thesis | Battery drained by the radio state (TX 17 mA, RX 19 mA at 3.3 V, as in the ns-3 demo) |
+| Needs | OMNeT++ only | OMNeT++ + INET 4.6 |
+| Run | `cd simulations; ./run -c Demo` | see below |
+
+In Qtenv:
+- Every frame is shown flying from sender to receiver.
+- The CH is red and bigger.
+- In the INET version you also see the radio signal spreading and a battery bar on every node.
+
+**Install INET 4.6 (once, about 20–40 min):**
+
+```bash
+source ~/omnetpp-6.4.0/setenv
+cd ~
+wget https://github.com/inet-framework/inet/releases/download/v4.6.0/inet-4.6.0-src.tgz
+tar xzf inet-4.6.0-src.tgz          # creates ~/inet4.6
+cd inet4.6
+source setenv
+make makefiles
+make -j$(nproc) MODE=release
+```
+
+**Build and run the INET demo:**
+
+```bash
+source ~/omnetpp-6.4.0/setenv
+source ~/inet4.6/setenv
+cd ~/WSNs/omnetpp/inet-demo
+make
+cd simulations
+./run                 # GUI
+./run -u Cmdenv       # command line: packet log + DEMO RESULTS at the end
+```
+
 ## Adding a new protocol version
 
 1. Write it as an ns-3-style program in `code/`, the same way as the existing ones.
