@@ -75,6 +75,7 @@ cd simulations
 ./run -u Cmdenv -c v8_chain_center       # command line, prints FND/HND/LND at the end
 ./run_all.sh                             # every configuration (≈ 1 min on 8 cores)
 python3 validate.py                      # compare everything with the ns-3 results
+python3 summarize.py SecurityPlan        # mean FND/HND/LND/PDR of one config (seeds averaged)
 ```
 
 In the GUI:
@@ -94,6 +95,7 @@ In the GUI:
 | `Routing` | v8-Chain `CHAIN_MODE` 0 / 1 / 2, centre and far BS |
 | `Robustness` | v5b, v8, v8-Chain × 8 topology seeds |
 | `Security_LEACH_center` … `Security_v8_far` | the 17 security scenarios (see the comments in the ini) |
+| `SecurityPlan`, `SecurityPlanSweep` | the lifetime-saving ECC + AES options of `docs/SECURITY_PLAN.md` |
 
 `**.controller.defines` takes the same switches as the ns-3 `-D` flags (`code/README.md`), for example:
 
