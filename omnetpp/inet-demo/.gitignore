@@ -4,3 +4,4 @@ src/*.so
 src/*_m.h
 src/*_m.cc
 simulations/results/
+.qtenvrc

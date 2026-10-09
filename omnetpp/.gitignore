@@ -4,3 +4,4 @@ src/wsn
 src/wsn.exe
 simulations/results/
 *.anf.bak
+.qtenvrc
