@@ -1,9 +1,8 @@
 # Build the simulation (needs OMNeT++ 6.x in the PATH: source <omnetpp>/setenv)
-all: src/Makefile
-	$(MAKE) -C src MODE=release
-
-src/Makefile:
+# The src/Makefile is regenerated every time, so new source folders are always picked up.
+all:
 	cd src && opp_makemake -f --deep -o wsn -O out -I.
+	$(MAKE) -C src MODE=release
 
 clean:
 	-$(MAKE) -C src clean MODE=release
